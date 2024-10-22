@@ -3,6 +3,10 @@
 		{
 			"name": "Blink",
 			"path": "."
+		},
+		{
+			"name": "Wokwi",
+			"path": "../Wokwi"
 		}
 	],
 	"settings": {}

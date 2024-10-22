@@ -9,4 +9,6 @@
 #include <WebServer.h> 
 #include "GyverPortal.h"
 #include <WiFiAP.h>
-#include "WiFiClient.h"     
+#include "WiFiClient.h"
+#include "AsyncUDP.h"
+#include "WiFiUdp.h"

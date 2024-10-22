@@ -1,9 +1,18 @@
 #include "includes.hpp"
 #include "tasks.cpp"
+#include "sensor.cpp"
 #include "webgui.cpp"
+#include "sound.cpp"
+#include "restart.cpp"
+
+
+
+
 
 void setup() {
   Serial.begin(115200);
+  pinMode(SENSOR, INPUT_PULLUP);
+  pinMode(HERCON, INPUT_PULLUP);
   strip.show();
   strip.setBrightness(50);
   strip.fill(0x008000, 0, 10);
@@ -11,11 +20,15 @@ void setup() {
   pinMode(HERCON, INPUT);
   pinMode(SOUND, OUTPUT);
   pinMode(SENSOR, INPUT);
-  xTaskCreate(vibrationTask, "Vibration Task", 1024, NULL, 1, NULL);
-  xTaskCreate(soundTask, "Sound Task", 1024, NULL, 1, NULL);
-  xTaskCreate(herconTask, "Hercon Task", 1024, NULL, 1, NULL);
-  xTaskCreatePinnedToCore(setupAPTask, "WiFi Task", 4096, NULL, 1, NULL, CONFIG_ARDUINO_RUNNING_CORE);
+  xTaskCreate(vibrationTask, "Vibration Task", 10000, NULL, 1, NULL);
+  xTaskCreate(soundTask, "Sound Task", 10000, NULL, 1, NULL);
+  //xTaskCreate(herconTask, "Hercon Task", 10000, NULL, 2, NULL);
+  xTaskCreate(setupAPTask, "WiFi Task", 10000, NULL, 1, NULL);
+  //xTaskCreate(taskFunction, "TaskFunction", 2048, NULL, 2, NULL);
+
 }
 
 void loop() {
+  portal.tick();
+  
 }
